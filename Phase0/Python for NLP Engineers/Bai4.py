@@ -66,24 +66,24 @@ def call_api_with_retry(url, max_retries=3, delay=1, backoff=2):
         except Exception as error:
             print(f"[NON-RETRYABLE ERROR] {type(error).__name__}: {error}")
             raise
-# def main():
-#     url = ""
+def main():
+    url = ""
 
-#     try:
-#         result = call_api_with_retry(
-#             url=url,
-#             max_retries=3,
-#             delay=1,
-#             backoff=2
-#         )
+    try:
+        result = call_api_with_retry(
+            url=url,
+            max_retries=3,
+            delay=1,
+            backoff=2
+        )
 
-#         print("\nFinal result:")
-#         print(result)
+        print("\nFinal result:")
+        print(result)
 
-#     except Exception as error:
-#         print("\nAPI call failed after retries.")
-#         print(f"Final error: {error}")
+    except Exception as error:
+        print("\nAPI call failed after retries.")
+        print(f"Final error: {error}")
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
