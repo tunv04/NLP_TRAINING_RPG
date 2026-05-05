@@ -1,0 +1,37 @@
+1. Thiết kế database
+2. Import dữ liệu crawl vào database
+3. Xây Search Service
+4. Tạo FastAPI API để search
+5. Test API
+6. Sau đó mới Docker hóa
+Ở bước này, ta tập trung vào Database + Search Service + FastAPI API.
+Mini_pj/
+├── app/
+│   ├── main.py                    # Khởi tạo FastAPI app
+│   ├── core/config.py             # Đọc config từ .env
+│   ├── db/session.py              # SQLAlchemy engine/session
+│   ├── models/product.py          # Product, Comment ORM models
+│   ├── schemas/product.py         # Pydantic response schemas
+│   ├── repositories/
+│   │   └── product_repository.py  # Query DB, upsert sản phẩm
+│   ├── services/
+│   │   ├── text_normalizer.py     # Bỏ dấu, normalize text
+│   │   └── search_service.py      # Basic + fuzzy search
+│   └── api/v1/
+│       ├── router.py
+│       └── product_routes.py      # API endpoints
+├── scripts/
+│   ├── create_tables.py           # Tạo bảng DB
+│   └── import_products.py         # Import JSON vào DB
+├── data/
+│   └── chiaki_products.json       # Dữ liệu sản phẩm
+├── craw.py                        # Script crawl từ Chiaki.vn
+├── test_search.py                 # Test search trực tiếp qua service
+├── test_api.py                    # Test API qua requests
+├── README.md
+├── QUICK_START.py
+└── requirements.txt
+pip install -r requirements.txt
+python -m scripts.create_tables
+python -m scripts.import_products
+uvicorn app.main:app --host 127.0.0.1 --port 8000
