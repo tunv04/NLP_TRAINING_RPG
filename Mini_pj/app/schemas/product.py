@@ -44,7 +44,7 @@ class ProductSearchResult(BaseModel):
     comments_count: int = 0
     comments: list[CommentRead] = Field(default_factory=list)
     score: float
-    match_type: Literal["basic", "fuzzy", "ranked"]
+    match_type: Literal["basic", "fuzzy", "bm25"]
 
     model_config = ConfigDict(from_attributes=True)
 
